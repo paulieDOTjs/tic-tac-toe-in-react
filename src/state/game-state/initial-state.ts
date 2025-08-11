@@ -1,7 +1,7 @@
 import { PLAYERS } from "../../utils/PLAYERS";
 import type { GameContextType } from "./game-context";
 
-export const initialState: GameContextType = {
+export const initialState: GameContextType = Object.freeze({
   gameState: new Array(3).fill(
     new Array(3).fill(null)
   ) as GameContextType["gameState"],
@@ -9,4 +9,8 @@ export const initialState: GameContextType = {
     throw new Error("Context not properly used");
   },
   turn: PLAYERS.X,
-};
+  reset: () => {
+    throw new Error("Context not properly used");
+  },
+  winner: null,
+});

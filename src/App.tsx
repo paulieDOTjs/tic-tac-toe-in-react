@@ -1,5 +1,4 @@
 import "./App.css";
-import { Cell } from "./components/cell/Cell";
 import { GameProvider } from "./state/game-state/game-provider";
 import { GameBoard } from "./components/game-board/GameBoard";
 
