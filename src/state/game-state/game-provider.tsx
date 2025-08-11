@@ -6,8 +6,9 @@ import { initialState } from "./initial-state";
 export const GameProvider = ({ children }: { children: JSX.Element }) => {
   const [gameState, setGameState] = useState(initialState.gameState);
 
-  const turn =
-    gameState.flat().filter(Boolean).length % 2 ? PLAYERS.O : PLAYERS.X;
+  const turn = useMemo(() => {
+    return gameState.flat().filter(Boolean).length % 2 ? PLAYERS.O : PLAYERS.X;
+  }, [gameState]);
 
   const dispatchTurn: TurnDispatch = useCallback(
     ({ row, column }) => {
@@ -15,7 +16,7 @@ export const GameProvider = ({ children }: { children: JSX.Element }) => {
       newState[row][column] = turn;
       setGameState(newState);
     },
-    [gameState, turn, setGameState]
+    [gameState, turn]
   );
 
   const reset = useCallback(() => {
